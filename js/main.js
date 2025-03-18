@@ -26,7 +26,7 @@ function openProxy1() {
     let proxyFrame = document.getElementById('proxyFrame');
     proxyFrame.data = ""; // Clear the old proxy session
     setTimeout(() => {
-        proxyFrame.data = "https://your-app.koyeb.app/"; // Replace with your actual proxy URL
+        proxyFrame.data = "https://diplomatic-daisi-lunnaras-1c7d558f.koyeb.app/"; // Replace with your actual proxy URL
     }, 100); // Small delay ensures proper reloading
 }
 
@@ -50,7 +50,7 @@ function openProxy() {
     let proxyFrame = document.getElementById('proxyFrame');
     proxyFrame.data = ""; // Clear the old proxy session
     setTimeout(() => {
-        proxyFrame.data = "https://your-app.koyeb.app/"; // Replace with your actual proxy URL
+        proxyFrame.data = "https://close-lexis-lunnaras-55ceb418.koyeb.app/"; // Replace with your actual proxy URL
     }, 100); // Small delay ensures proper reloading
 }
 
