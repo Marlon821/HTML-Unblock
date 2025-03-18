@@ -39,7 +39,7 @@ function closeProxy1() {
     let proxyFrame = document.getElementById('proxyFrame');
     proxyFrame.data = "";
 }
-function openProxy2() {
+function openProxy() {
     document.getElementById('home').style.display = 'none';
     document.getElementById('tools').style.display = 'none';
 
@@ -54,7 +54,7 @@ function openProxy2() {
     }, 100); // Small delay ensures proper reloading
 }
 
-function closeProxy2() {
+function closeProxy() {
     let proxyContainer = document.getElementById('proxyContainer');
     proxyContainer.style.display = 'none';
     document.getElementById('tools').style.display = 'block';
