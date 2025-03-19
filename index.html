@@ -3,100 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Game Hub</title>
+    <title>Game Hub</title>
+    
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- ✅ Load Firebase as a module before auth.js -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-
-        // 🔹 Your Firebase Config (REPLACE with your actual values)
-        const firebaseConfig = {
-            apiKey: "AlZaSyB6QcZ4GzdQCHn_DEmF_YZnZqfX5expq8",
-            authDomain: "authentication-a227b.firebaseapp.com",
-            projectId: "authentication-a227b",
-            storageBucket: "authentication-a227b.firebasestorage.app",
-            messagingSenderId: "914910652238",
-            appId: "1:914910652238:web:885f1db072264b2b44e01f"
-        };
-
-        // 🔹 Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-
-        // 🔹 Make Firebase available globally in `auth.js`
-        window.firebaseApp = app;
-        window.firebaseAuth = auth;
-        window.signInWithEmailAndPassword = signInWithEmailAndPassword;
-        window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
-        window.onAuthStateChanged = onAuthStateChanged;
-        window.signOut = signOut;
-    </script>
-
-    <!-- ✅ Load auth.js AFTER Firebase -->
-    <script defer src="js/auth.js"></script>
 </head>
 <body>
+
+    <!-- ✨ Star Background -->
+    <div class="stars"></div>
+
+    <!-- 🔝 Navigation Bar -->
     <div class="navbar">
-        <button onclick="showSection('home')">Home</button>
-        <button onclick="showSection('tools')">Tools</button>
-        <button onclick="logout()">Logout</button>
+        <a href="#" onclick="showSection('games')">Games</a>
+        <a href="#" onclick="showSection('tools')">Tools</a>
+        <a href="#" onclick="showSection('settings')">Settings</a>
     </div>
 
-    <div id="auth-section">
-        <div class="container">
-            <h1>Login</h1>
-            <input type="email" id="email" placeholder="Enter your email">
-            <input type="password" id="password" placeholder="Enter your password">
-            <button onclick="login()">Login</button>
-            <p>Don't have an account? <a href="#" onclick="showRegister()">Register</a></p>
+    <!-- 🌟 Main Title -->
+    <h1>Game Hub</h1>
+
+    <!-- 🎮 Games Section -->
+    <div id="games" class="games-container" style="display: none;">
+        <div class="game-card" onclick="openGame('games/run3.html')">
+            <img src="images/run3.jpg" alt="Run 3">
+            <p>Run 3</p>
         </div>
-
-        <div id="register" style="display:none;">
-            <h1>Register</h1>
-            <input type="email" id="reg-email" placeholder="Enter your email">
-            <input type="password" id="reg-password" placeholder="Enter your password">
-            <button onclick="register()">Register</button>
-            <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+        <div class="game-card" onclick="openGame('games/slope/index.html')">
+            <img src="images/slope.jpg" alt="Slope">
+            <p>Slope</p>
         </div>
-    </div>
-
-    <div id="home" style="display: none;">
-        <h1>🎮 Welcome to Game Hub</h1>
-        <p id="dashboard-info">You are logged in.</p>
-        <div class="games-container"></div>
-    </div>
-
-    <div id="tools" style="display: none;">
-        <h1>🛠️ Tools</h1>
-        <div class="tools-container">
-            <button onclick="openProxy('https://exampleproxy.com')">Proxy 1</button>
-            <button onclick="openProxy('https://anotherproxy.com')">Proxy 2</button>
+        <div class="game-card" onclick="openGame('games/tetris.html')">
+            <img src="images/tetris.jpg" alt="Tetris">
+            <p>Tetris</p>
         </div>
     </div>
 
+    <!-- 🛠️ Tools Section -->
+    <div id="tools" class="tools-container" style="display: none;">
+        <h2>🛠️ Tools</h2>
+        <button onclick="openProxy('https://exampleproxy.com')">Proxy 1</button>
+        <button onclick="openProxy('https://anotherproxy.com')">Proxy 2</button>
+    </div>
+
+    <!-- ⚙️ Settings Section -->
+    <div id="settings" class="settings-container" style="display: none;">
+        <h2>⚙️ Settings</h2>
+        <p>Coming Soon...</p>
+    </div>
+
+    <!-- 🔻 Footer -->
+    <footer>
+        &copy; 2025 Game Hub | All Rights Reserved
+    </footer>
+
+    <!-- 🎮 JavaScript -->
     <script>
+        // 🔹 Function to Show Sections
         function showSection(section) {
-            document.getElementById("auth-section").style.display = "none";
-            document.getElementById("home").style.display = "none";
+            document.getElementById("games").style.display = "none";
             document.getElementById("tools").style.display = "none";
+            document.getElementById("settings").style.display = "none";
             document.getElementById(section).style.display = "block";
         }
 
-        function showRegister() {
-            document.getElementById("register").style.display = "block";
-            document.getElementById("auth-section").style.display = "none";
+        // 🎮 Open Games in a Frame
+        function openGame(url) {
+            window.open(url, "_blank");
         }
 
-        function showLogin() {
-            document.getElementById("register").style.display = "none";
-            document.getElementById("auth-section").style.display = "block";
-        }
-
+        // 🌐 Open Proxy Links
         function openProxy(url) {
-            window.open(url, '_blank');
+            window.open(url, "_blank");
         }
+
+        // ⭐ Function to Generate Stars
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 100; i++) { // Adjust for more/less stars
+                let star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Generate stars on page load
+        window.onload = createStars;
     </script>
 
 </body>
