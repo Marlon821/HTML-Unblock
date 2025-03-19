@@ -100,24 +100,14 @@
     </div>
 
     <div id="home">
-        <h1>Bored in class</h1>
+        <h1>bumble site</h1>
         <div class="games-container"></div>
     </div>
 
     <div id="tools" style="display: none;">
         <h1>Tools</h1>
         <div class="tools-container">
-            <button onclick="openProxy()">Ultraviolet</button>
-            <button onclick="openProxy1()">Lunar (has ads)</button>
+            <button onclick="window.open('https://study-coach.dronefpv1234.workers.dev/proxy1', '_blank')">Ultraviolet</button>
+            <button onclick="window.open('https://study-coach.dronefpv1234.workers.dev/proxy2', '_blank')">Lunar (has ads)</button>
         </div>
     </div>
-
-    <!-- Proxy Container (Hidden Initially) -->
-<div id="proxyContainer" style="display: none; width: 100vw; height: 100vh; position: fixed; top: 0; left: 0;">
-    <button onclick="closeProxy()" style="position: absolute; top: 10px; left: 10px; padding: 10px 15px; background: red; color: white; border: none; cursor: pointer; z-index: 1000;">Back</button>
-    <object id="proxyFrame" type="text/html" style="width: 100vw; height: 100vh; border: none;"></object>
-</div>
-
-    <div id="gameContainer"></div>
-</body>
-</html>
