@@ -1,72 +1,40 @@
-// ✅ Debugging Check
-if (typeof firebase === "undefined") {
-    console.error("❌ Firebase SDK not loaded. Check your script links in index.html.");
+// ✅ Ensure Firebase is Loaded
+if (typeof firebaseAuth === "undefined") {
+    console.error("❌ Firebase SDK not loaded! Check script order.");
 } else {
-    console.log("✅ Firebase SDK Loaded Successfully");
+    console.log("✅ Firebase SDK Loaded!");
 }
 
-// 🔹 Firebase Config (Replace with your keys)
-const firebaseConfig = {
-    apiKey: "AlZaSyB6QcZ4GzdQCHn_DEmF_YZnZqfX5expq8",
-    authDomain: "authentication-a227b.firebaseapp.com",
-    projectId: "authentication-a227b",
-    storageBucket: "authentication-a227b.firebasestorage.app",
-    messagingSenderId: "914910652238",
-    appId: "1:914910652238:web:885f1db072264b2b44e01f"
-};
+// 🔹 Login Function
+function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-// ✅ Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-
-// ✅ Debugging
-console.log("✅ Firebase Initialized:", firebase.apps.length);
-
-// ✅ Login Function
-window.login = function () {
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-
-    auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            alert("✅ Login successful!");
-            window.location.href = "dashboard.html";
+    firebaseAuth.signInWithEmailAndPassword(email, password)
+        .then(userCredential => {
+            console.log("✅ Login Successful!", userCredential.user);
+            showSection('home');
         })
-        .catch((error) => {
-            alert("❌ Login failed: " + error.message);
-        });
-};
+        .catch(error => console.error("❌ Login Failed:", error.message));
+}
 
-// ✅ Register Function
-window.register = function () {
-    let email = document.getElementById("reg-email").value;
-    let password = document.getElementById("reg-password").value;
+// 🔹 Register Function
+function register() {
+    const email = document.getElementById("reg-email").value;
+    const password = document.getElementById("reg-password").value;
 
-    auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            alert("✅ Account created successfully!");
-            window.location.href = "dashboard.html";
+    firebaseAuth.createUserWithEmailAndPassword(email, password)
+        .then(userCredential => {
+            console.log("✅ Registration Successful!", userCredential.user);
+            showSection('home');
         })
-        .catch((error) => {
-            alert("❌ Registration failed: " + error.message);
-        });
-};
+        .catch(error => console.error("❌ Registration Failed:", error.message));
+}
 
-// ✅ Logout Function
-window.logout = function () {
-    auth.signOut().then(() => {
-        alert("✅ Logged out successfully.");
-        window.location.href = "index.html";
-    });
-};
-
-// ✅ Check if User is Logged In
-auth.onAuthStateChanged((user) => {
-    if (user) {
-        let userEmail = user.email;
-        let dashboardInfo = document.getElementById("dashboard-info");
-        if (dashboardInfo) {
-            dashboardInfo.innerHTML = `🎮 Welcome, ${userEmail}!`;
-        }
-    }
-});
+// 🔹 Logout Function
+function logout() {
+    firebaseAuth.signOut().then(() => {
+        console.log("✅ Logged out!");
+        showSection("auth-section");
+    }).catch(error => console.error("❌ Logout Failed:", error.message));
+}
